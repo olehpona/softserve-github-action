@@ -1,0 +1,25 @@
+name: Continuous Integration
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main  # Change this to your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Installing node
+        uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          npm install
+      - name: Build project
+        run: |
+          npm run build
+      - name: Run unit tests
+        run: |
+          npm run test
